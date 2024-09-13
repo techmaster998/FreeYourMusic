@@ -1,3 +1,5 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+*.nupkg filter=lfs diff=lfs merge=lfs -text
+*.exe filter=lfs diff=lfs merge=lfs -text
 VideoLAN.LibVLC.Windows.3.0.20.nupkg filter=lfs diff=lfs merge=lfs -text
