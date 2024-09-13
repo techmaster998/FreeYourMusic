@@ -25,6 +25,9 @@ using Xabe.FFmpeg;
 using MediaToolkit;
 using static MediaToolkit.Model.Metadata;
 using File = System.IO.File;
+using YoutubeExplode;
+using YoutubeExplode.Converter;
+using FFMpegCore;
 
 namespace FreeYourMusic
 {
@@ -35,6 +38,7 @@ namespace FreeYourMusic
         public Uri resultsAddress;
         //public string videoPath;
         public string videoDirectory;
+        public bool clearDownloadsOnExit;
         public Form1()
         {
             InitializeComponent();
@@ -53,7 +57,16 @@ namespace FreeYourMusic
             listView1.Items.Add(currentAddress);
             webView21.SourceChanged += webView21_SourceChanged;
             this.AcceptButton = button1;
+            vlcControl1.PositionChanged += label2_text;
         }
+        public void label2_text(object sender, EventArgs e)
+        {
+            //if (vlcControl1.IsPlaying)
+            //{
+            //    label2.Text = vlcControl1.Position.ToString();
+            //}
+        }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -79,7 +92,8 @@ namespace FreeYourMusic
                 currentAddress = webView21.Source.ToString();
                 listView1.Items.Clear();
                 listView1.Items.Add(currentAddress);
-                SaveVideoToDiskAsync(currentAddress);
+                //SaveVideoToDisk(currentAddress);
+                DownloadVideo(currentAddress);
                 //Run(currentAddress);
             }
         }
@@ -90,8 +104,25 @@ namespace FreeYourMusic
         }
 
 
+        public async Task DownloadVideo(string link)
+        {
+            var youtube = new YoutubeClient();
+            var videoUrl = link;
+            listView1.Items.Clear();
+            listView1.Items.Add("Downloading...");
+            var youTube = YouTube.Default; // starting point for YouTube actions
+            var videoInfo = youTube.GetVideo(link);
+            webView21.GoBack();
 
-        public void SaveVideoToDiskAsync(string link)
+            await youtube.Videos.DownloadAsync(videoUrl, Path.Combine(videoDirectory + "\\" + videoInfo.FullName));
+            //await youtube.Videos.DownloadAsync(videoUrl, Path.Combine(videoDirectory + "video.mp4"), o => o.SetContainer("webm").SetPreset(YoutubeExplode.Converter.ConversionPreset.UltraFast).SetFFmpegPath("ffmpeg"));
+            listView1.Items.Clear();
+            listView1.Items.Add("Download complete.");
+            PlayFinishedVideo(videoDirectory + "\\" + videoInfo.FullName);
+        }
+
+
+        public void SaveVideoToDisk(string link)
         {
             var youTube = YouTube.Default; // starting point for YouTube actions
             var lowvideo = youTube.GetVideo(link);
@@ -109,7 +140,6 @@ namespace FreeYourMusic
             if (File.Exists(videoDirectory + "\\" + "video.mp4"))
             {
                 Uri searchUrl = new Uri("https://www.youtube.com/results?search_query=" + textBox1.Text);
-                webView21.GoBack();
                 string videoPath = videoDirectory + "\\" + "video.mp4";
                 string audioPath = videoDirectory + "\\" + "audio.mp3";
                 listView1.Items.Clear();
@@ -132,16 +162,7 @@ namespace FreeYourMusic
 
         public void MergeAudioVideo(string audiopath, string videopath, string FVN)
         {
-            Process proc = new Process();
-            proc.StartInfo.Arguments = string.Format("-i {0} -i {1} -acodec copy -vcodec copy -map 0:0 -map 0:1 {2}", audiopath, videopath, FVN);
-            PlayFinishedVideo(FVN);
-            //using (var engine = new Engine())
-            //{
-            //    engine.CustomCommand("-i videopath -i audiopath -c copy FVN.mp4");
-            //    listView1.Items.Clear();
-            //    listView1.Items.Add("Merge complete.");
-            //    PlayFinishedVideo(FVN);
-            //}
+            return;
         }
 
         public void PlayFinishedVideo(string FVN)
@@ -152,6 +173,7 @@ namespace FreeYourMusic
             vlcControl1.Focus();
             listView1.Items.Clear();
             listView1.Items.Add(FVN);
+            return;
         }
 
         private void vlcControl1_Click(object sender, EventArgs e)
@@ -162,11 +184,14 @@ namespace FreeYourMusic
         private void OnProcessExit(object sender, FormClosingEventArgs e)
         {
             vlcControl1.Stop();
-            DirectoryInfo di = new DirectoryInfo(videoDirectory);
-
-            foreach (FileInfo file in di.GetFiles())
+            if (checkBox1.Checked)
             {
-                file.Delete();
+                DirectoryInfo di = new DirectoryInfo(videoDirectory);
+
+                foreach (FileInfo file in di.GetFiles())
+                {
+                    file.Delete();
+                }
             }
         }
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
@@ -217,6 +242,31 @@ namespace FreeYourMusic
         private void button3_Click(object sender, EventArgs e)
         {
             vlcControl1.Pause();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            vlcControl1.Position -= vlcControl1.Position;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            vlcControl1.Position += 0.01f;
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            vlcControl1.Position -= 0.01f;
         }
     }
 }
