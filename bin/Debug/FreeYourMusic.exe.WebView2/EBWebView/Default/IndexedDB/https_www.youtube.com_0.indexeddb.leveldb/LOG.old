@@ -1,6 +1,3 @@
-2024/09/12-05:30:37.175 423c Reusing MANIFEST C:\Users\jonat\source\repos\FreeYourMusic\bin\Debug\FreeYourMusic.exe.WebView2\EBWebView\Default\IndexedDB\https_www.youtube.com_0.indexeddb.leveldb/MANIFEST-000001
-2024/09/12-05:30:37.175 423c Recovering log #97
-2024/09/12-05:30:37.181 423c Reusing old log C:\Users\jonat\source\repos\FreeYourMusic\bin\Debug\FreeYourMusic.exe.WebView2\EBWebView\Default\IndexedDB\https_www.youtube.com_0.indexeddb.leveldb/000097.log 
-2024/09/12-05:31:11.571 9580 Level-0 table #102: started
-2024/09/12-05:31:11.583 9580 Level-0 table #102: 1284059 bytes OK
-2024/09/12-05:31:11.586 9580 Delete type=0 #97
+2024/09/12-23:58:49.853 a2b8 Reusing MANIFEST C:\Users\jonat\source\repos\FreeYourMusic\bin\Debug\FreeYourMusic.exe.WebView2\EBWebView\Default\IndexedDB\https_www.youtube.com_0.indexeddb.leveldb/MANIFEST-000001
+2024/09/12-23:58:49.853 a2b8 Recovering log #101
+2024/09/12-23:58:49.855 a2b8 Reusing old log C:\Users\jonat\source\repos\FreeYourMusic\bin\Debug\FreeYourMusic.exe.WebView2\EBWebView\Default\IndexedDB\https_www.youtube.com_0.indexeddb.leveldb/000101.log 

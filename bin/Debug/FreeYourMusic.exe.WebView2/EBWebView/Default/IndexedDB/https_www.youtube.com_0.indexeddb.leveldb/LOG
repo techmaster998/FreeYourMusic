@@ -1,9 +1,3 @@
-2024/09/12-05:32:41.541 82b4 Reusing MANIFEST C:\Users\jonat\source\repos\FreeYourMusic\bin\Debug\FreeYourMusic.exe.WebView2\EBWebView\Default\IndexedDB\https_www.youtube.com_0.indexeddb.leveldb/MANIFEST-000001
-2024/09/12-05:32:41.541 82b4 Recovering log #101
-2024/09/12-05:32:41.541 82b4 Reusing old log C:\Users\jonat\source\repos\FreeYourMusic\bin\Debug\FreeYourMusic.exe.WebView2\EBWebView\Default\IndexedDB\https_www.youtube.com_0.indexeddb.leveldb/000101.log 
-2024/09/12-05:32:42.621 82b4 Compacting 1@1 + 1@2 files
-2024/09/12-05:32:42.627 82b4 Generated table #104@1: 827 keys, 41464 bytes
-2024/09/12-05:32:42.627 82b4 Compacted 1@1 + 1@2 files => 41464 bytes
-2024/09/12-05:32:42.629 82b4 compacted to: files[ 0 0 1 0 0 0 0 ]
-2024/09/12-05:32:42.629 82b4 Delete type=2 #99
-2024/09/12-05:32:42.629 82b4 Delete type=2 #102
+2024/09/13-00:05:08.910 a848 Reusing MANIFEST C:\Users\jonat\source\repos\FreeYourMusic\bin\Debug\FreeYourMusic.exe.WebView2\EBWebView\Default\IndexedDB\https_www.youtube.com_0.indexeddb.leveldb/MANIFEST-000001
+2024/09/13-00:05:08.910 a848 Recovering log #101
+2024/09/13-00:05:08.913 a848 Reusing old log C:\Users\jonat\source\repos\FreeYourMusic\bin\Debug\FreeYourMusic.exe.WebView2\EBWebView\Default\IndexedDB\https_www.youtube.com_0.indexeddb.leveldb/000101.log 
